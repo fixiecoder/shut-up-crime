@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 import randomColor from 'randomcolor';
+import * as types from './types/main-actions-types';
 
 export function getCrimeData(boundsData) {
   return (dispatch) => {
@@ -55,16 +56,16 @@ export function getCrimeData(boundsData) {
 
           const graphData2 = { data: mappedGraphData, maxCrimeCount };
 
-          dispatch({ type: 'LOADING_FINISHED' });
-          dispatch({ type: 'CRIME_DATA', data: crimeGroupedByStreet, graphData, graphData2 });
+          dispatch({ type: types.LOADING_FINISHED });
+          dispatch({ type: types.CRIME_DATA, data: crimeGroupedByStreet, graphData, graphData2 });
         })
         .catch(e => {
           window.console.error(e);
-          dispatch({ type: 'LOADING_FINISHED' });
-          dispatch({ type: 'UNABLE_TO_DISPLAY_CRIMES' });
+          dispatch({ type: types.LOADING_FINISHED });
+          dispatch({ type: types.UNABLE_TO_DISPLAY_CRIMES });
         });
     } else {
-      return dispatch({ type: 'UNABLE_TO_DISPLAY_CRIMES' });
+      return dispatch({ type: types.UNABLE_TO_DISPLAY_CRIMES });
     }
   };
 }
@@ -73,7 +74,7 @@ export function goToPlace(places) {
   if(places && places.length > 0) {
     const lat = places[0].geometry.location.lat();
     const lng = places[0].geometry.location.lng();
-    return { type: 'GO_TO', center: { lat, lng }, zoom: 15 };
+    return { type: types.GO_TO, center: { lat, lng }, zoom: 15 };
   } else {
     return { type: 'NONE' };
   }

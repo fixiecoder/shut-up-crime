@@ -1,3 +1,5 @@
+import * as types from '../actions/types/main-actions-types';
+
 function setCrimeData(state, action) {
   return Object.assign(
     {},
@@ -48,25 +50,25 @@ const initialState = {
 export default function calendar(state = initialState, action) {
   switch(action.type) {
 
-    case 'SET_CURRENT_CRIME_GROUP':
+    case types.SET_CURRENT_CRIME_GROUP:
       return setCurrentCrimeGroup(state, action);
 
-    case 'CRIME_DATA':
+    case types.CRIME_DATA:
       return setCrimeData(state, action);
 
-    case 'UNABLE_TO_DISPLAY_CRIMES':
+    case types.UNABLE_TO_DISPLAY_CRIMES:
       return setUnableToDisplayCrimes(state, action);
 
-    case 'GO_TO':
+    case types.GO_TO:
       return goTo(state, action);
 
-    case 'LOADING_STARTED':
+    case types.LOADING_STARTED:
       return loadingStarted(state, action);
 
-    case 'LOADING_FINISHED':
+    case types.LOADING_FINISHED:
       return loadingFinished(state, action);
 
-    case 'DISPLAY_CRIME_GROUP':
+    case types.DISPLAY_CRIME_GROUP:
       return setCurrentCrimeGroup(state, action);
 
     default:
